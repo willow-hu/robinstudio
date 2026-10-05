@@ -1,4 +1,5 @@
 /* Forest witch: peat, moss, parchment, dried berry. */
+.app-cover{width:100%;height:100%;object-fit:cover}.prose img{display:block;max-width:100%;height:auto;margin:24px 0}
 :root{--bg:#e9e5d8;--text:#29342a;--muted:#696c5b;--line:#c6c7b4;--accent:#79453f;--forest:#263c31;--parchment:#eee9db;--moss:#a8b48a}
 body{background:var(--bg);font-family:"Segoe UI","Microsoft YaHei",sans-serif}
 .sidebar{background:var(--forest);border-right:1px solid #182d24;color:#e9e5d4;width:264px}
@@ -12,3 +13,6 @@ body{background:var(--bg);font-family:"Segoe UI","Microsoft YaHei",sans-serif}
 @media(max-width:1200px){.sidebar{width:240px}.home{margin-left:240px;padding:40px 30px}.profile-content{padding:40px 26px 28px}}
 @media(max-width:760px){.home{margin-left:0;padding:30px 22px 24px}.page-heading{padding-bottom:24px;margin-bottom:24px}.page-heading h1{font-size:33px}.count{margin-top:30px}.profile-content{padding:48px 30px 28px}.grid{gap:22px}.art{height:228px}.detail-title{align-items:center}.detail h1{font-size:34px}}
 @media(max-width:520px){.art{height:260px}.card-copy{padding:20px}.home-footer{font-size:9px}.page-heading p{max-width:220px}.count{padding:6px 9px}.detail-title{gap:12px}.detail .primary{padding:11px 13px}}
+
+/* Compact home heading, on desktop and mobile. */
+.home .page-heading h1{font-size:26px;margin:0;letter-spacing:1px}.home .page-heading{padding-bottom:20px}

@@ -4,12 +4,12 @@ function art(a) {
  const visuals={focus:'<div class="timer"><span>FOCUS TIME</span><strong>25:00</strong><i>开始专注 &nbsp; ▶</i></div>',notes:'<div class="note note-back"></div><div class="note"><span>随手记下</span><b>让想法<br>有处可去。</b><small>今天，慢一点也可以。</small></div>',palette:'<div class="swatches"><i></i><i></i><i></i><i></i><i></i></div><span class="art-caption">A PALETTE FOR A SLOW AFTERNOON</span>',game:'<div class="tiles">'+[1,2,3,4,5,6,7,8,''].map(n=>`<i>${n}</i>`).join('')+'</div>',weather:'<div class="weather"><span>MONDAY, A GOOD DAY</span><div class="sun"></div><strong>24°</strong><small>晴，适合出去走走。</small></div>',links:'<div class="bookmark"><b>My little collection <span>↗</span></b><p><i>✳</i> 灵感与设计 <span>↗</span></p><p><i>◈</i> 好用的小工具 <span>↗</span></p><p><i>≋</i> 留待阅读 <span>↗</span></p></div>'};
  return `<div class="art ${a.color}">${visuals[a.type]}</div>`;
 }
-function profile(){return `<div class="profile-content"><div class="monogram">H<span>u</span></div><span class="eyebrow">个人资料</span><h2>Hu<span class="dot">.</span></h2><p class="bio">开发者。<br>偶尔做工具，偶尔做游戏。</p><div class="socials"><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="mailto:hello@example.com">Email ↗</a></div><div class="profile-bottom"><span class="online-dot"></span> 正在做新的东西<span class="copyright">© 2026 Hu</span></div></div>`;}
+function profile(){return renderProfile(profileConfig);}
 const root=document.querySelector('#root');
 const match=location.pathname.match(/^\/(projects|app)\/([^/]+)\/?$/);
 const current=match && apps.find(a=>a.id===match[2]);
 if(location.pathname==='/'){
- root.innerHTML=`<aside class="sidebar">${profile()}</aside><header class="mobile-header"><button id="menu" aria-label="打开个人资料" aria-haspopup="dialog">☰</button><span>HU / STUDIO</span></header><main class="home"><header class="page-heading"><h1>我的应用</h1></header><div class="grid">${apps.map(renderAppCard).join('')}</div><footer class="home-footer"><span>HU / 个人作品</span><span>持续更新</span></footer></main><dialog id="profile-drawer"><button class="close" aria-label="关闭个人资料">×</button>${profile()}</dialog>`;
+ root.innerHTML=`<aside class="sidebar">${profile()}</aside><header class="mobile-header"><button id="menu" aria-label="打开个人资料" aria-haspopup="dialog">☰</button><span>HU / STUDIO</span></header><main class="home"><header class="page-heading"><h1>我的应用</h1></header><div class="grid">${apps.map(renderAppCard).join('')}</div></main><dialog id="profile-drawer"><button class="close" aria-label="关闭个人资料">×</button>${profile()}</dialog>`;
  const drawer=document.querySelector('dialog');
  document.querySelector('#menu').onclick=()=>{drawer.showModal();document.body.classList.add('drawer-open');};
  function close(){drawer.close();document.body.classList.remove('drawer-open');}
@@ -26,6 +26,9 @@ if(location.pathname==='/'){
 }else{
  root.innerHTML='<main class="detail"><h1>这个页面还不存在。</h1><a class="primary" href="/">返回主页</a></main>';
 }
+
+
+
 
 
 

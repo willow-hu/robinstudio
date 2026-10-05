@@ -16,3 +16,9 @@ body{background:var(--bg);font-family:"Segoe UI","Microsoft YaHei",sans-serif}
 
 /* Compact home heading, on desktop and mobile. */
 .home .page-heading h1{font-size:26px;margin:0;letter-spacing:1px}.home .page-heading{padding-bottom:20px}
+
+.socials a{border-bottom:0}
+
+.profile-avatar{display:block;width:88px;height:88px;object-fit:cover;border-radius:2px;margin-bottom:32px}.profile-content .bio{white-space:pre-line}.profile-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.profile-links a{display:grid;place-items:center;width:36px;height:36px;color:#d9dfc4;border:1px solid #65765c;border-radius:3px;font-size:15px;font-weight:600}.profile-links a:hover{background:#455c46;color:#fff}.profile-links a[aria-label=GitHub]{font-size:12px}
+
+.profile-avatar{border-radius:50%;border:1px solid #9ca98a}

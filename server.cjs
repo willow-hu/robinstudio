@@ -8,7 +8,8 @@ http.createServer((req,res) => {
   const file = path.resolve(root,'.'+pathname);
   if (!file.startsWith(root+path.sep) && file !== root) { res.writeHead(403); return res.end(); }
   const target = fs.existsSync(file) && fs.statSync(file).isFile() ? file : path.join(root,'index.html');
-  const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8'};
+  const types = {'.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8'};
   res.writeHead(200,{'Content-Type':types[path.extname(target)] || 'application/octet-stream'});
   fs.createReadStream(target).pipe(res);
 }).listen(5173,'127.0.0.1',()=>console.log('Preview: http://127.0.0.1:5173'));
+

@@ -1,13 +1,13 @@
 // 在数组中增加一项，即可生成卡片和详情页。
 const apps = [
   {
-    id: 'game',
-    name: '塔影千年',
-    en: 'A conversation across centuries',
-    desc: '与妙思住持对话，探索苏州双塔的历史与建筑。',
+    id: '001',
+    name: '双塔导览剧情游戏',
+    en: 'Interactive Story Game of Twin Pagoda',
+    desc: '在实地游览苏州双塔的过程中游玩该交互游戏，以更有趣、更沉浸式的方式了解双塔的历史。',
     cover: '/apps/game/imgs/twin_pagoda/bg.png',
     color: 'green',
-    appUrl: '/apps/game/',
+    appUrl: '/apps/twin_pagoda/',
     contentHtml: `
       <h2>在对话中探索苏州双塔</h2>
       <p>以苏州罗汉院双塔及正殿遗址为背景，通过与妙思住持对话，了解寺院历史、双塔建筑和文化价值。</p>

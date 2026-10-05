@@ -22,3 +22,7 @@ body{background:var(--bg);font-family:"Segoe UI","Microsoft YaHei",sans-serif}
 .profile-avatar{display:block;width:88px;height:88px;object-fit:cover;border-radius:2px;margin-bottom:32px}.profile-content .bio{white-space:pre-line}.profile-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.profile-links a{display:grid;place-items:center;width:36px;height:36px;color:#d9dfc4;border:1px solid #65765c;border-radius:3px;font-size:15px;font-weight:600}.profile-links a:hover{background:#455c46;color:#fff}.profile-links a[aria-label=GitHub]{font-size:12px}
 
 .profile-avatar{border-radius:50%;border:1px solid #9ca98a}
+
+.social-icon{display:block;width:20px;height:20px;background-color:currentColor;-webkit-mask:var(--icon-url) center/contain no-repeat;mask:var(--icon-url) center/contain no-repeat}
+
+.profile-links a{border:0;border-radius:0}.profile-links a:hover{background:transparent;color:#fff}

@@ -1,7 +1,7 @@
 // 个人资料填表：所有字段均可留空，空字段不显示。
 const profileConfig = {
-  name: 'Hu',
-  bio: '开发者。\n偶尔做工具，偶尔做游戏。',
+  name: '胡文喆',
+  bio: '独立开发者',
   avatar: '/images/android-chrome-512x512.png', // 图片路径，例如 /images/me.jpg；留空则隐藏
   socials: [
     { name: 'GitHub', url: 'https://github.com/willow-hu', icon: 'github' },

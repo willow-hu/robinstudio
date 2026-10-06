@@ -29,5 +29,6 @@ function renderProfile(config) {
   return `<div class="profile-content">${avatar}
     ${name ? `<h2>${escapeProfile(name)}</h2>` : ''}${bio ? `<p class="bio">${escapeProfile(bio)}</p>` : ''}
     ${links.length ? `<div class="profile-links">${links.map(link => `<a href="${escapeProfile(link.url)}" aria-label="${escapeProfile(link.name)}" title="${escapeProfile(link.name)}"${link.icon === 'email' ? '' : ' target="_blank" rel="noopener noreferrer"'}><span class="social-icon" aria-hidden="true" style="--icon-url:url('/images/icons/${icons[link.icon] || 'link.svg'}')"></span></a>`).join('')}</div>` : ''}
-    <div class="profile-bottom"><span class="copyright">© ${new Date().getFullYear()}${name ? ' ' + escapeProfile(name) : ''}</span></div></div>`;
+    <div class="profile-bottom"><span class="copyright">© 2026 Robin Wenzhe Hu</span></div></div>`;
 }
+

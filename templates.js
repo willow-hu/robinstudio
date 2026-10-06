@@ -4,5 +4,5 @@ function renderAppCard(app) {
 }
 
 function renderAppDetail(app) {
-  return `<header class="detail-nav"><a href="/">← 返回主页</a><span>HU / STUDIO</span></header><main class="detail"><div class="detail-actions"><a class="primary" href="${app.appUrl || `/app/${app.id}/`}" target="_blank" rel="noopener noreferrer">打开应用 ${arrow}</a></div><div class="prose"><p role="status">正在加载介绍…</p></div></main>`;
+  return `<header class="detail-nav"><a href="/">← 返回主页</a><span>ROBIN STUDIO</span></header><main class="detail"><div class="detail-actions"><a class="primary" href="${app.appUrl || `/app/${app.id}/`}" target="_blank" rel="noopener noreferrer">打开应用 ${arrow}</a></div><div class="prose"><p role="status">正在加载介绍…</p></div></main>`;
 }

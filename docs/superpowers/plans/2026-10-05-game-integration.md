@@ -1,8 +1,8 @@
 # Game Integration Implementation Plan
 
-**Goal:** Serve the existing game at `/apps/game/` and link it from the studio.
+**Goal:** Serve the existing game at `/apps/twin_pagoda_interaction_game/` and link it from the studio.
 
-**Architecture:** Copy only the static runtime files into `apps/game`. Keep the original game as the source project. Use an optional `appUrl` for the game entry while retaining the existing demo URLs.
+**Architecture:** Copy only the static runtime files into `apps/twin_pagoda_interaction_game`. Keep the original game as the source project. Use an optional `appUrl` for the game entry while retaining the existing demo URLs.
 
 **Tech Stack:** Plain HTML/CSS/JavaScript, Node.js HTTP server, Node.js test runner.
 
@@ -14,7 +14,7 @@
 
 ## Tasks
 
-- [x] Copy `index.html`, `config.js`, `scripts`, `styles`, `game_scripts`, and `imgs` into `apps/game`.
+- [x] Copy `index.html`, `config.js`, `scripts`, `styles`, `game_scripts`, and `imgs` into `apps/twin_pagoda_interaction_game`.
 - [x] Add HTTP regression checks for the game index, slash redirect with query preservation, JSON/assets, missing game resources, and existing studio pages.
 - [x] Update `server.cjs` to serve directory indexes, redirect to trailing slashes, serve JSON with its correct MIME type, and return 404 for missing game resources.
 - [x] Add the game record to `apps.js`, use `appUrl` in `templates.js`, and retain existing demo links.
@@ -23,7 +23,7 @@
 
 ## Verification
 
-Run `npm run check` and `npm test`. Browser: open `/`, follow the game card to `/projects/game`, follow “打开应用” to `/apps/game/`, click “开始游戏”, verify dialogue and history, and refresh the game.
+Run `npm run check` and `npm test`. Browser: open `/`, follow the game card to `/projects/20250825`, follow “打开应用” to `/apps/twin_pagoda_interaction_game/`, click “开始游戏”, verify dialogue and history, and refresh the game.
 
 ## Results and Decisions
 

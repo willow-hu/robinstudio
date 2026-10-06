@@ -5,8 +5,8 @@ const apps = [
     name: '双塔导览剧情游戏',
     en: 'Interactive Story Game of Twin Pagoda',
     desc: '在实地游览苏州双塔的过程中游玩该交互游戏，以更有趣、更沉浸式的方式了解双塔的历史。',
-    cover: '/apps/game/imgs/twin_pagoda/bg.png',
-    appUrl: '/apps/twin_pagoda/',
+    cover: '/apps/twin_pagoda_interaction_game/imgs/twin_pagoda/bg.png',
+    appUrl: '/apps/twin_pagoda_interaction_game/',
     detailFile: '/details/20250825.md',
   },
   {

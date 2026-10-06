@@ -13,7 +13,7 @@ Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。�
 
 已接入双塔导览剧情游戏、ScrAIter 只读展示版和文物探索前端原型。首页展示内容由 `apps.js` 配置。
 
-正式发布时，需要服务器支持 `/projects/*` 和现有 `/app/*` 示例页的页面回退；`/apps/game/` 独立提供游戏静态文件。
+正式发布时，需要服务器支持 `/projects/*` 和现有 `/app/*` 示例页的页面回退；`/apps/twin_pagoda_interaction_game/` 独立提供游戏静态文件。
 
 ## 添加应用
 
@@ -62,22 +62,22 @@ Markdown 由本地 vendor/marked.js 解析，再经 vendor/purify.js 清理 HTML
 
 ## 游戏接入与更新
 
-- 介绍页：`/projects/game`
-- 游戏入口：`/apps/game/`（末尾斜杠用于正确解析相对资源路径；本地服务器会自动补齐）
-- 发布文件：`apps/game/`，包含 HTML、配置、脚本、样式、剧情 JSON 和图片。
+- 介绍页：`/projects/20250825`
+- 游戏入口：`/apps/twin_pagoda_interaction_game/`（末尾斜杠用于正确解析相对资源路径；本地服务器会自动补齐）
+- 发布文件：`apps/twin_pagoda_interaction_game/`，包含 HTML、配置、脚本、样式、剧情 JSON 和图片。
 - 原项目：`E:\Study\scraiter\game\interaction_game_demo`，保持独立开发。
 
-修改原项目后，在网站目录执行 `npm run sync:game`。也可以直接运行：
+修改原项目后，在网站目录执行 `npm run sync:twin_pagoda_interaction_game`。也可以直接运行：
 
 ```powershell
-powershell -NoProfile -File scripts/sync-game.ps1
+powershell -NoProfile -File scripts/sync-twin_pagoda_interaction_game.ps1
 ```
 
 原项目换位置时可指定 `-Source "新的游戏目录"`。同步只复制运行文件，不复制 `.git`、`node_modules` 或临时上传目录；覆盖同名文件，但不自动删除目标里旧文件。删除或重命名游戏资源后，应手动核对发布目录。
 
 当前原项目的 `scripts/uiManager.js` 在类结束后重复了一段 `reset()` 代码，会在加载时触发 `npcText` 未定义错误。同步脚本仅在发布副本中删除这段已识别的重复内容；原项目不变。原项目修复后，同步脚本会正常保留完整文件。
 
-本地运行 `node server.cjs`（或 `npm run dev`），访问 `http://127.0.0.1:5173/apps/game/`。服务器默认仅监听本机；端口被占用时可使用：
+本地运行 `node server.cjs`（或 `npm run dev`），访问 `http://127.0.0.1:5173/apps/twin_pagoda_interaction_game/`。服务器默认仅监听本机；端口被占用时可使用：
 
 ```powershell
 $env:PORT = '5174'
@@ -126,7 +126,7 @@ powershell -NoProfile -File scripts/sync-museum-ugc.ps1
 
 ### 静态站点部署规则
 
-网站与游戏均可由静态服务器提供。上传根目录的 `index.html`、各个网站 JS/CSS 文件，以及 `images/`、`apps/game/`；无需上传 Git 元数据、测试、文档或本地开发服务器。
+网站与游戏均可由静态服务器提供。上传根目录的 `index.html`、各个网站 JS/CSS 文件，以及 `images/`、`apps/twin_pagoda_interaction_game/`；无需上传 Git 元数据、测试、文档或本地开发服务器。
 
 若使用 Nginx，将以下规则合并到已有域名的 `server` 块内，把 `root` 改成实际发布目录。示例保留项目的页面回退，同时让缺失的游戏文件返回 404。
 
@@ -134,8 +134,8 @@ powershell -NoProfile -File scripts/sync-museum-ugc.ps1
 root /var/www/studio-website;
 index index.html;
 
-location = /apps/game {
-    return 308 /apps/game/$is_args$args;
+location = /apps/twin_pagoda_interaction_game {
+    return 308 /apps/twin_pagoda_interaction_game/$is_args$args;
 }
 
 location ^~ /apps/ {

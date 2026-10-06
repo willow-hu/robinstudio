@@ -22,27 +22,27 @@ before(async () => {
 after(() => processHandle?.kill());
 
 test('game directory serves its own index', async () => {
-  const response = await fetch(`${base}/apps/game/`);
+  const response = await fetch(`${base}/apps/twin_pagoda_interaction_game/`);
   assert.equal(response.status, 200);
   assert.match(await response.text(), /id="startGameButton"/);
 });
 test('slash redirect preserves game parameters', async () => {
-  const response = await fetch(`${base}/apps/game?site=twin_pagoda`, { redirect: 'manual' });
+  const response = await fetch(`${base}/apps/twin_pagoda_interaction_game?site=twin_pagoda`, { redirect: 'manual' });
   assert.equal(response.status, 308);
-  assert.equal(response.headers.get('location'), '/apps/game/?site=twin_pagoda');
+  assert.equal(response.headers.get('location'), '/apps/twin_pagoda_interaction_game/?site=twin_pagoda');
 });
 test('game script and images are served correctly', async () => {
-  const response = await fetch(`${base}/apps/game/game_scripts/twin_pagoda.json`);
+  const response = await fetch(`${base}/apps/twin_pagoda_interaction_game/game_scripts/twin_pagoda.json`);
   assert.equal(response.status, 200);
   assert.match(response.headers.get('content-type'), /application\/json/);
   assert.ok((await response.json()).metadata);
-  const image = await fetch(`${base}/apps/game/imgs/twin_pagoda/bg.png`);
+  const image = await fetch(`${base}/apps/twin_pagoda_interaction_game/imgs/twin_pagoda/bg.png`);
   assert.equal(image.status, 200);
   assert.equal(image.headers.get('content-type'), 'image/png');
   assert.ok((await image.arrayBuffer()).byteLength > 0);
 });
 test('missing game resources return 404 instead of the studio HTML', async () => {
-  const response = await fetch(`${base}/apps/game/game_scripts/missing.json`);
+  const response = await fetch(`${base}/apps/twin_pagoda_interaction_game/game_scripts/missing.json`);
   assert.equal(response.status, 404);
 });
 test('ScrAIter serves its build and relative JS/CSS assets under the subpath', async () => {
@@ -64,7 +64,7 @@ test('ScrAIter serves its build and relative JS/CSS assets under the subpath', a
   assert.equal((await fetch(`${base}/apps/scraiter/assets/missing.js`)).status, 404);
 });
 test('studio home and existing routes still receive the studio index', async () => {
-  for (const route of ['/', '/projects/game', '/projects/focus', '/app/focus/']) {
+  for (const route of ['/', '/projects/20250825', '/projects/focus', '/app/focus/']) {
     const response = await fetch(`${base}${route}`);
     assert.equal(response.status, 200);
     assert.match(await response.text(), /id="root"/);

@@ -2,7 +2,7 @@ param(
     [string]$Source = 'E:\Study\scraiter\game\interaction_game_demo'
 )
 $ErrorActionPreference = 'Stop'
-$destination = Join-Path (Split-Path $PSScriptRoot -Parent) 'apps\game'
+$destination = Join-Path (Split-Path $PSScriptRoot -Parent) 'apps\twin_pagoda_interaction_game'
 $entries = @('index.html', 'config.js', 'scripts', 'styles', 'game_scripts', 'imgs')
 foreach ($entry in $entries) {
     if (-not (Test-Path -LiteralPath (Join-Path $Source $entry))) {

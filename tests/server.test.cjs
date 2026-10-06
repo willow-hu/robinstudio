@@ -45,10 +45,49 @@ test('missing game resources return 404 instead of the studio HTML', async () =>
   const response = await fetch(`${base}/apps/game/game_scripts/missing.json`);
   assert.equal(response.status, 404);
 });
+test('ScrAIter serves its build and relative JS/CSS assets under the subpath', async () => {
+  const redirect = await fetch(`${base}/apps/scraiter?view=demo`, { redirect: 'manual' });
+  assert.equal(redirect.status, 308);
+  assert.equal(redirect.headers.get('location'), '/apps/scraiter/?view=demo');
+  const response = await fetch(`${base}/apps/scraiter/`);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /ScrAIter/);
+  assert.doesNotMatch(html, /\/vite\.svg/);
+  const assets = [...html.matchAll(/(?:src|href)="(\.\/assets\/[^"\s]+)"/g)];
+  assert.ok(assets.length >= 2);
+  for (const [, asset] of assets) {
+    const resource = await fetch(new URL(asset, `${base}/apps/scraiter/`));
+    assert.equal(resource.status, 200);
+    assert.match(resource.headers.get('content-type'), /text\/(javascript|css)/);
+  }
+  assert.equal((await fetch(`${base}/apps/scraiter/assets/missing.js`)).status, 404);
+});
 test('studio home and existing routes still receive the studio index', async () => {
   for (const route of ['/', '/projects/game', '/projects/focus', '/app/focus/']) {
     const response = await fetch(`${base}${route}`);
     assert.equal(response.status, 200);
     assert.match(await response.text(), /id="root"/);
   }
+});
+test('Museum UGC serves its entry, relative bundle and local JSON data', async () => {
+  const redirect = await fetch(`${base}/apps/museum-ugc`, { redirect: 'manual' });
+  assert.equal(redirect.status, 308);
+  assert.equal(redirect.headers.get('location'), '/apps/museum-ugc/');
+  const response = await fetch(`${base}/apps/museum-ugc/`);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /文物探索/);
+  const asset = html.match(/src="(\.\/assets\/[^"\s]+\.js)"/);
+  assert.ok(asset);
+  const bundle = await fetch(new URL(asset[1], `${base}/apps/museum-ugc/`));
+  assert.equal(bundle.status, 200);
+  assert.match(bundle.headers.get('content-type'), /javascript/);
+  for (const name of ['ugc_data', 'users_data']) {
+    const data = await fetch(`${base}/apps/museum-ugc/data/${name}.json`);
+    assert.equal(data.status, 200);
+    assert.match(data.headers.get('content-type'), /application\/json/);
+    assert.ok(await data.json());
+  }
+  assert.equal((await fetch(`${base}/apps/museum-ugc/assets/missing.js`)).status, 404);
 });

@@ -11,7 +11,7 @@
 - `forest.css`：林中女巫主题；在基础样式后加载，优先在这里修改视觉样式。
 - `server.cjs`：本地预览服务器，仅监听本机。
 
-已接入“塔影千年”剧情游戏。专注计时器可体验，随记应用页为占位预览。
+已接入双塔导览剧情游戏、ScrAIter 只读展示版和文物探索前端原型。首页展示内容由 `apps.js` 配置。
 
 正式发布时，需要服务器支持 `/projects/*` 和现有 `/app/*` 示例页的页面回退；`/apps/game/` 独立提供游戏静态文件。
 
@@ -86,6 +86,44 @@ node server.cjs
 检查：`npm run check`、`npm test`。无需安装第三方依赖，也无需构建游戏。
 
 ## 部署到域名
+
+### ScrAIter 展示版
+
+- 介绍页：`/projects/002`。
+- 应用入口：`/apps/scraiter/`，在新标签页打开。
+- 原项目：`E:\Study\scraiter\Human-AI_Col\web-app\ScrAIter`。
+- 发布目录：`apps/scraiter/`，同步自原项目的 `frontend/dist/`。
+
+当前原项目已经提供只读展示模式，项目、剧本、资料和知识库数据来自前端内置快照。上传、编辑、保存和 AI 生成被禁用；无需 Python 后端或 API 密钥。现有构建使用相对资源路径和 HashRouter，因此支持子目录部署及刷新。
+
+更新时，先在原项目的 `frontend` 目录运行 `npm run build`，然后在本网站目录执行 `npm run sync:scraiter`；也可以直接执行：
+
+```powershell
+powershell -NoProfile -File scripts/sync-scraiter.ps1
+```
+
+源项目换位置时使用 `-Source "新的 ScrAIter 项目目录"`。同步只复制已有构建产物，不复制后端、依赖、共享原始资料或环境配置；覆盖同名文件，不自动删除旧资源。发布副本会将 Vite 默认图标替换为网站图标。封面 `images/scraiter-cover.png` 是实际剧情树界面的截图，需在界面变化后单独更新。
+
+现有 `/apps/` 静态文件规则同样适用于 ScrAIter，上线时一并上传 `apps/scraiter/` 和封面。接入展示版不等于部署完整的 AI 创作服务。
+
+### 文物探索（Museum UGC）
+
+- 介绍页：`/projects/003`。
+- 应用入口：`/apps/museum-ugc/`，在新标签页打开。
+- 原项目：`E:\Study\Game_as_UGC\Codes\museum-ugc-prototype`。
+- 发布目录：`apps/museum-ugc/`，同步自原项目已有的 `dist/`，包含 JS 和 `data/` 下的文物、用户 JSON。
+
+项目仅有前端，无需后端或 API 密钥。留言、话题回复和导览进度只保存在页面内存中，刷新会重置。原项目使用 Tailwind CDN、外部字体和部分远程图片/头像，需要网络连接；浏览器会提示 Tailwind CDN 的生产使用警告。语音输入需浏览器麦克风权限和 HTTPS 或 localhost。
+
+更新时，先在原项目运行 `npm run typecheck`、`npm run build`，然后在网站目录执行 `npm run sync:museum-ugc`，或直接运行：
+
+```powershell
+powershell -NoProfile -File scripts/sync-museum-ugc.ps1
+```
+
+源项目换位置时使用 `-Source "新的原型项目目录"`。同步只复制 `dist`，不复制源码、依赖或 `.env.local`；覆盖同名文件，不自动删除旧文件。实际界面封面为 `images/museum-ugc-cover.png`。上线时上传发布目录和封面，沿用 `/apps/` 静态文件规则。
+
+### 静态站点部署规则
 
 网站与游戏均可由静态服务器提供。上传根目录的 `index.html`、各个网站 JS/CSS 文件，以及 `images/`、`apps/game/`；无需上传 Git 元数据、测试、文档或本地开发服务器。
 

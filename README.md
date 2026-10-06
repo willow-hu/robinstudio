@@ -56,7 +56,7 @@ Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。�
 ```
 
 建议图片使用 /images/... 根路径。相对图片和链接按 Markdown 文件目录解析。
-顶部返回主页、项目名称和打开应用按钮由公共模板生成。旧 contentHtml/body 字段不再用于详情页。
+只有顶部导航栏与打开应用按钮由公共模板生成。详情标题、简介、图片及全部正文由 Markdown 文件控制；apps.js 的 name、desc、cover 用于主页卡片（name 也用于浏览器标签标题）。旧 contentHtml/body 字段不再用于详情页。
 保存文件后刷新详情页，无需构建。新增的 .md 文件需要随网站一起发布。
 Markdown 由本地 vendor/marked.js 解析，再经 vendor/purify.js 清理 HTML；文件缺失时显示重试入口。
 

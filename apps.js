@@ -1,7 +1,7 @@
-// 在数组中增加一项，即可生成卡片和详情页。
+// id 使用 YYYYMMDD 日期格式；主页自动按日期倒序展示。
 const apps = [
   {
-    id: '001',
+    id: '20250825',
     name: '双塔导览剧情游戏',
     en: 'Interactive Story Game of Twin Pagoda',
     desc: '在实地游览苏州双塔的过程中游玩该交互游戏，以更有趣、更沉浸式的方式了解双塔的历史。',
@@ -18,7 +18,7 @@ const apps = [
     `,
   },
   {
-    id: '002',
+    id: '20251024',
     name: 'ScrAIter',
     en: 'AI Script Co-creator',
     desc: '面向文化遗产的 AI 辅助交互剧本创作工具，浏览资料、知识库和剧情结构。',
@@ -35,7 +35,7 @@ const apps = [
     `,
   },
   {
-    id: '003',
+    id: '20251225',
     name: '文物探索',
     en: 'Museum UGC Prototype',
     desc: '通过留言、话题和导览，从不同观众的视角探索文物故事。',
@@ -51,4 +51,4 @@ const apps = [
       <p>这是纯前端原型。留言、话题回复和导览进度仅保存在当前页面，刷新后重置。</p>
     `,
   },
-];
+].sort((a, b) => b.id.localeCompare(a.id));

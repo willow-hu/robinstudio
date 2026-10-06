@@ -1,6 +1,7 @@
 // 个人资料填表：所有字段均可留空，空字段不显示。
 const profileConfig = {
   name: '胡文喆',
+  nameEn: 'Robin Wenzhe Hu',
   bio: '独立开发者',
   avatar: '/images/android-chrome-512x512.png', // 图片路径，例如 /images/me.jpg；留空则隐藏
   socials: [
@@ -15,4 +16,3 @@ const profileConfig = {
     { name: '个人主页', url: '', icon: 'website' }
   ]
 };
-

@@ -2,7 +2,7 @@
 
 运行 `npm run dev`，打开 http://127.0.0.1:5173。
 
-无第三方依赖。主页、详情页和示例应用使用独立 URL，支持直接访问与刷新。
+Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。主页、详情页和示例应用使用独立 URL，支持直接访问与刷新。
 
 - `apps.js`：应用列表，每项数据自动生成一张卡片和一个详情页。
 - `templates.js`：所有卡片和详情页共用的模板。
@@ -28,36 +28,37 @@
 
 `profile-template.js` 是桌面侧栏和手机资料抽屉共享的模板。链接带图标、悬停名称和无障碍名称；不合法的网页地址不会显示。图标使用 images/icons/ 下的 SVG 文件，以 CSS mask 统一采用主题颜色，不依赖外部图标服务。icon 字段对应 profile-template.js 中的文件映射；未知类型使用 link.svg。
 
-## 应用数据示例
+## 应用数据与 Markdown 详情
 
-在 `apps.js` 的数组中添加对象，`id` 使用唯一的英文、数字或连字符名称：
+在 apps.js 添加条目，id 使用唯一的 YYYYMMDD 日期，列表按日期倒序展示：
 
 ```js
 {
-  id: 'my-app',
+  id: '20251024',
   name: '我的应用',
   desc: '一句话介绍',
   cover: '/images/my-app.png',
-  color: 'green',
-  appUrl: '/apps/my-app/', // 可选：真实应用入口，不填则使用 /app/my-app/
-  body: '详情介绍正文'
+  appUrl: '/apps/my-app/',
+  detailFile: '/details/20251024.md'
 }
 ```
 
-把封面图片放在项目 `images/` 目录。新对象会自动得到 `/projects/my-app` 详情页；真实应用通过 `appUrl` 指定入口，文件仍需单独接入。
+编辑对应 Markdown 文件即可编写正文：
 
-详情正文需要自由排版时，用 `contentHtml` 替代默认正文，例如：
+```md
+## 项目介绍
 
-```js
-contentHtml: `<h2>为什么做这个应用</h2>
-<p>你的介绍。</p>
-<img src="/images/my-app-detail.png" alt="功能截图">
-<p>更多说明。</p>`
+正文支持 **加粗**、列表、引用、代码块和表格。
+
+![应用截图](/images/my-app.png)
+
+[打开相关网站](https://example.com)
 ```
 
-`contentHtml` 仅用于开发者在代码中编写的可信内容，不接收用户提交的 HTML。
-
-修改 `renderAppCard` 会作用于所有卡片；修改 `renderAppDetail` 会作用于所有详情页的公共结构。公共 CSS 修改也会统一生效，封面配色或各自正文的专用样式只作用于对应内容。
+建议图片使用 /images/... 根路径。相对图片和链接按 Markdown 文件目录解析。
+顶部返回主页、项目名称和打开应用按钮由公共模板生成。旧 contentHtml/body 字段不再用于详情页。
+保存文件后刷新详情页，无需构建。新增的 .md 文件需要随网站一起发布。
+Markdown 由本地 vendor/marked.js 解析，再经 vendor/purify.js 清理 HTML；文件缺失时显示重试入口。
 
 ## 游戏接入与更新
 

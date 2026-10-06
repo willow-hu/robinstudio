@@ -91,3 +91,18 @@ test('Museum UGC serves its entry, relative bundle and local JSON data', async (
   }
   assert.equal((await fetch(`${base}/apps/museum-ugc/assets/missing.js`)).status, 404);
 });
+
+ test('Markdown details are served as text and missing details return 404', async () => {
+  for (const id of ['20250825','20251024','20251225']) {
+    const response = await fetch(base + '/details/' + id + '.md');
+    assert.equal(response.status, 200);
+    assert.match(response.headers.get('content-type'), /text\/markdown/);
+    const markdown = await response.text();
+    const { marked } = require('../vendor/marked.js');
+    const html = marked.parse(markdown);
+    assert.match(html, /<h2>/);
+    assert.match(html, /<p>/);
+  }
+  const missing = await fetch(base + '/details/not-found.md');
+  assert.equal(missing.status, 404);
+ });

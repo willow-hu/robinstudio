@@ -1,8 +1,8 @@
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 function art(a) {
- if (a.cover) return `<div class="art ${a.color || 'green'}"><img class="app-cover" src="${a.cover}" alt="${a.name}界面预览"></div>`;
+ if (a.cover) return `<div class="art"><img class="app-cover" src="${a.cover}" alt="${a.name}界面预览"></div>`;
  const visuals={focus:'<div class="timer"><span>FOCUS TIME</span><strong>25:00</strong><i>开始专注 &nbsp; ▶</i></div>',notes:'<div class="note note-back"></div><div class="note"><span>随手记下</span><b>让想法<br>有处可去。</b><small>今天，慢一点也可以。</small></div>',palette:'<div class="swatches"><i></i><i></i><i></i><i></i><i></i></div><span class="art-caption">A PALETTE FOR A SLOW AFTERNOON</span>',game:'<div class="tiles">'+[1,2,3,4,5,6,7,8,''].map(n=>`<i>${n}</i>`).join('')+'</div>',weather:'<div class="weather"><span>MONDAY, A GOOD DAY</span><div class="sun"></div><strong>24°</strong><small>晴，适合出去走走。</small></div>',links:'<div class="bookmark"><b>My little collection <span>↗</span></b><p><i>✳</i> 灵感与设计 <span>↗</span></p><p><i>◈</i> 好用的小工具 <span>↗</span></p><p><i>≋</i> 留待阅读 <span>↗</span></p></div>'};
- return `<div class="art ${a.color}">${visuals[a.type]}</div>`;
+ return `<div class="art">${visuals[a.type]}</div>`;
 }
 function profile(){return renderProfile(profileConfig);}
 const root=document.querySelector('#root');
@@ -19,6 +19,7 @@ if(location.pathname==='/'){
 }else if(current && match[1]==='projects'){
  document.title=current.name+' — HU';
  root.innerHTML=renderAppDetail(current);
+ loadMarkdownDetail(current, root.querySelector(".prose"));
 }else if(current){
  document.title=current.name+' — 示例应用';
  root.innerHTML=`<main class="demo"><a class="demo-back" href="/projects/${current.id}">← 作品介绍</a><span class="eyebrow">示例应用</span><h1>${current.name}</h1>${art(current)}<p>${current.id==='focus'?'点击下方按钮，试试专注计时。':'此处用于演示应用独立打开的效果，之后替换为你的真实 App。'}</p>${current.id==='focus'?'<button class="primary" id="start">开始专注</button>':''}</main>`;

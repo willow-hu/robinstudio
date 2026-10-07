@@ -64,7 +64,7 @@ test('ScrAIter serves its build and relative JS/CSS assets under the subpath', a
   assert.equal((await fetch(`${base}/apps/scraiter/assets/missing.js`)).status, 404);
 });
 test('studio home and existing routes still receive the studio index', async () => {
-  for (const route of ['/', '/projects/20250825', '/projects/focus', '/app/focus/']) {
+  for (const route of ['/', '/projects/20250825', '/projects/20251024', '/projects/20251225']) {
     const response = await fetch(`${base}${route}`);
     assert.equal(response.status, 200);
     assert.match(await response.text(), /id="root"/);

@@ -2,7 +2,7 @@
 
 运行 `npm run dev`，打开 http://127.0.0.1:5173。
 
-Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。主页、详情页和示例应用使用独立 URL，支持直接访问与刷新。
+Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。主页、详情页和真实应用使用独立 URL，支持直接访问与刷新。
 
 - `apps.js`：应用列表，每项数据自动生成一张卡片和一个详情页。
 - `templates.js`：所有卡片和详情页共用的模板。
@@ -13,7 +13,7 @@ Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。�
 
 已接入双塔导览剧情游戏、ScrAIter 只读展示版和文物探索前端原型。首页展示内容由 `apps.js` 配置。
 
-正式发布时，需要服务器支持 `/projects/*` 和现有 `/app/*` 示例页的页面回退；`/apps/twin_pagoda_interaction_game/` 独立提供游戏静态文件。
+正式发布时，需要服务器支持 `/projects/*` 的页面回退；`/apps/twin_pagoda_interaction_game/` 独立提供游戏静态文件。
 
 ## 添加应用
 

@@ -39,11 +39,11 @@ Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。�
   desc: '一句话介绍',
   cover: '/images/my-app.png',
   appUrl: '/apps/my-app/',
-  detailFile: '/details/20251024.md'
+  detailFile: '/details/20251024/detail.md'
 }
 ```
 
-编辑对应 Markdown 文件即可编写正文：
+每个项目使用 details/<id>/detail.md，图片、PDF 等文件放在同一个项目目录。detailFile 可省略，展示引擎默认按 id 查找此路径。编辑对应 Markdown 文件即可编写正文：
 
 ```md
 ## 项目介绍
@@ -55,7 +55,7 @@ Markdown 解析使用项目内的 Marked 和 DOMPurify，无需安装依赖。�
 [打开相关网站](https://example.com)
 ```
 
-建议图片使用 /images/... 根路径。相对图片和链接按 Markdown 文件目录解析。
+建议图片使用 /images/... 根路径。相对图片和链接按 Markdown 文件目录解析。例如 ![截图](poster_grid.png) 和 [项目说明](ProjectOverview.pdf) 会访问当前项目文件夹中的文件。
 只有顶部导航栏与打开应用按钮由公共模板生成。详情标题、简介、图片及全部正文由 Markdown 文件控制；apps.js 的 name、desc、cover 用于主页卡片（name 也用于浏览器标签标题）。旧 contentHtml/body 字段不再用于详情页。
 保存文件后刷新详情页，无需构建。新增的 .md 文件需要随网站一起发布。
 Markdown 由本地 vendor/marked.js 解析，再经 vendor/purify.js 清理 HTML；文件缺失时显示重试入口。

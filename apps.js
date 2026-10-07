@@ -7,7 +7,7 @@ const apps = [
     desc: '在实地游览苏州双塔的过程中游玩该交互游戏，以更有趣、更沉浸式的方式了解双塔的历史。',
     cover: '/apps/twin_pagoda_interaction_game/imgs/twin_pagoda/bg.png',
     appUrl: '/apps/twin_pagoda_interaction_game/',
-    detailFile: '/details/20250825.md',
+    detailFile: '/details/20250825/detail.md',
   },
   {
     id: '20251024',
@@ -16,7 +16,7 @@ const apps = [
     desc: 'AI驱动的交互游戏脚本创作工具。',
     cover: '/images/scraiter-cover.png',
     appUrl: '/apps/scraiter/',
-    detailFile: '/details/20251024.md',
+    detailFile: '/details/20251024/detail.md',
   },
   {
     id: '20251225',
@@ -25,7 +25,7 @@ const apps = [
     desc: '以不同方式展示游客对文物发表的想法。',
     cover: '/images/museum-ugc-cover.png',
     appUrl: '/apps/museum-ugc/',
-    detailFile: '/details/20251225.md',
+    detailFile: '/details/20251225/detail.md',
   },
 ].sort((a, b) => b.id.localeCompare(a.id));
 

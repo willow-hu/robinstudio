@@ -94,15 +94,25 @@ test('Museum UGC serves its entry, relative bundle and local JSON data', async (
 
  test('Markdown details are served as text and missing details return 404', async () => {
   for (const id of ['20250825','20251024','20251225']) {
-    const response = await fetch(base + '/details/' + id + '.md');
+    const response = await fetch(base + '/details/' + id + '/detail.md');
     assert.equal(response.status, 200);
     assert.match(response.headers.get('content-type'), /text\/markdown/);
     const markdown = await response.text();
     const { marked } = require('../vendor/marked.js');
     const html = marked.parse(markdown);
-    assert.match(html, /<h2>/);
+    assert.match(html, /<h1>/);
     assert.match(html, /<p>/);
   }
   const missing = await fetch(base + '/details/not-found.md');
   assert.equal(missing.status, 404);
  });
+
+test('Project-local images and PDF links resolve alongside detail.md', async () => {
+ for (const [id, file, type] of [['20251024','ProjectOverview.pdf','application/pdf'],['20251225','poster_grid.png','image/png']]) {
+  const url = new URL(file, base + '/details/' + id + '/detail.md');
+  const response = await fetch(url);
+  assert.equal(response.status,200);
+  assert.equal(response.headers.get('content-type'),type);
+  assert.ok((await response.arrayBuffer()).byteLength > 0);
+ }
+});

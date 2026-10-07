@@ -28,4 +28,3 @@ const apps = [
     detailFile: '/details/20251225/detail.md',
   },
 ].sort((a, b) => b.id.localeCompare(a.id));
-

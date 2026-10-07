@@ -2,11 +2,16 @@ async function loadMarkdownDetail(app, container) {
   try {
     const detailFile = app.detailFile || `/details/${app.id}/detail.md`;
     const response = await fetch(detailFile, { cache: 'no-cache' });
-    if (!response.ok || response.headers.get('content-type')?.includes('text/html')) {
+    if (
+      !response.ok ||
+      response.headers.get('content-type')?.includes('text/html')
+    ) {
       throw new Error('无法读取详情文件');
     }
     const source = await response.text();
-    container.innerHTML = DOMPurify.sanitize(marked.parse(source), { USE_PROFILES: { html: true } });
+    container.innerHTML = DOMPurify.sanitize(marked.parse(source), {
+      USE_PROFILES: { html: true },
+    });
     // 相对图片和链接以 Markdown 文件所在目录为基准。
     const base = new URL(response.url || detailFile, location.href);
     for (const element of container.querySelectorAll('img[src], a[href]')) {

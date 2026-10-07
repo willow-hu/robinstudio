@@ -13,6 +13,6 @@ const profileConfig = {
     { name: '小红书', url: '', icon: 'xiaohongshu' },
     { name: 'X', url: '', icon: 'x' },
     { name: 'LinkedIn', url: '', icon: 'linkedin' },
-    { name: '个人主页', url: '', icon: 'website' }
-  ]
+    { name: '个人主页', url: '', icon: 'website' },
+  ],
 };

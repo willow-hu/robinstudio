@@ -527,7 +527,7 @@ dialog::backdrop {
   }
 
   .detail h1 {
-    font-size:34px
+    font-size:32px
   }
 
 }
@@ -714,3 +714,19 @@ dialog::backdrop {
   max-width:100%;
   height:auto
 }
+
+.detail-nav > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-chevron {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+

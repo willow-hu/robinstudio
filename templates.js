@@ -9,7 +9,7 @@ function renderAppCard(app) {
 
 function renderAppDetail(app) {
   return `<header class="detail-nav">
-  <a href="/">← 返回主页</a>
+  <a href="/"><span class="back-chevron" aria-hidden="true"></span>返回主页</a>
   <span>ROBIN STUDIO</span>
   </header>
   <main class="detail">

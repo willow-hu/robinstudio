@@ -18,7 +18,16 @@ async function loadMarkdownDetail(app, container) {
       const attribute = element.tagName === 'IMG' ? 'src' : 'href';
       const value = element.getAttribute(attribute);
       if (value.startsWith('#')) continue;
-      element.setAttribute(attribute, new URL(value, base).href);
+      const url = new URL(value, base);
+      element.setAttribute(attribute, url.href);
+      if (
+        element.tagName === 'A' &&
+        ['http:', 'https:'].includes(url.protocol) &&
+        (url.origin !== location.origin || /\.pdf$/i.test(url.pathname))
+      ) {
+        element.setAttribute('target', '_blank');
+        element.setAttribute('rel', 'noopener noreferrer');
+      }
     }
   } catch (error) {
     container.replaceChildren();

@@ -53,7 +53,7 @@ if (location.pathname === '/') {
     document.body.classList.remove('drawer-open'),
   );
 } else if (current && match[1] === 'projects') {
-  document.title = current.name + ' — ROBIN STUDIO';
+  document.title = current.name;
   root.innerHTML = renderAppDetail(current);
   loadMarkdownDetail(current, root.querySelector('.prose'));
 } else {

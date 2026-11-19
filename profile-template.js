@@ -31,6 +31,7 @@ function renderProfile(config) {
     x: 'twitter-x.svg',
     linkedin: 'linkedin.svg',
     website: 'personal_webpage.svg',
+    resume: 'resume.svg',
   };
   const links = [];
   for (const social of config.socials || []) {
@@ -40,7 +41,9 @@ function renderProfile(config) {
         ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
           ? 'mailto:' + encodeURIComponent(value)
           : ''
-        : profileWebUrl(value);
+        : social.icon === 'resume' && /^\/(?!\/)[^\s\\]*$/.test(value)
+          ? value
+          : profileWebUrl(value);
     if (url) links.push({ ...social, url });
   }
   let avatar = '';

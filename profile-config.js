@@ -7,6 +7,7 @@ const profileConfig = {
   socials: [
     { name: 'GitHub', url: 'https://github.com/willow-hu', icon: 'github' },
     { name: 'Email', url: 'willowhu98@gmail.com', icon: 'email' }, // 只填邮箱地址，不需要 mailto:
+    { name: '简历', url: '/files/resume_product_Wenzhe.pdf', icon: 'resume' },
     { name: '微博', url: '', icon: 'weibo' },
     { name: '知乎', url: '', icon: 'zhihu' },
     { name: '哔哩哔哩', url: '', icon: 'bilibili' },
